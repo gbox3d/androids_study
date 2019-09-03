@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">exam0basic</string>
+    <string name="btn_test1">Test1</string>
+    <string name="btn_test2">Test2</string>
+    <string name="btn_looptest">loop test</string>
+</resources>

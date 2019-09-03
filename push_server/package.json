@@ -1,0 +1,19 @@
+{
+  "name": "push_server",
+  "version": "1.0.0",
+  "description": "android fcm test server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "android",
+    "fcm",
+    "push"
+  ],
+  "author": "gbox3d",
+  "license": "ISC",
+  "dependencies": {
+    "fcm-node": "^1.3.0"
+  }
+}

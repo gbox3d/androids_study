@@ -4,8 +4,11 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.media.MediaPlayer;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.nfc.Tag;
@@ -14,6 +17,7 @@ import android.os.IBinder;
 import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -21,6 +25,7 @@ import com.google.firebase.messaging.RemoteMessage;
 import static com.gbox3d.exam01push.MainActivity.TAG;
 
 public class MyFcmService extends FirebaseMessagingService {
+
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
 //        super.onMessageReceived(remoteMessage);
@@ -35,6 +40,10 @@ public class MyFcmService extends FirebaseMessagingService {
             Log.d(TAG," num1 : " + remoteMessage.getData().get("num1"));
 
             sendNotification(remoteMessage.getData().get("msg"));
+
+            Intent intent = new Intent("custom-event-name");
+            intent.putExtra("message", "start");
+            LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
 
 
             if (/* Check if data needs to be processed by long running job */ true) {

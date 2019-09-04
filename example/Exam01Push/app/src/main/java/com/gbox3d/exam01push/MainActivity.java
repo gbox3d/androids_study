@@ -3,6 +3,7 @@ package com.gbox3d.exam01push;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import android.app.ActivityManager;
 import android.app.NotificationChannel;
@@ -16,7 +17,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -104,6 +104,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Log.d(TAG,"start App..");
 
+        Intent intent = new Intent(MainActivity.this,MyPlayerService.class);
+        intent.putExtra("message", "start service from MainActivity");
+        startService(intent);
+
+
+
         ((Button)findViewById(R.id.button_token)).setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -122,15 +128,35 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         );
-        ((Button)findViewById(R.id.button_find_service)).setOnClickListener(
+        ((Button)findViewById(R.id.button_snd_stop)).setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        isMyServiceRunning(MyFcmService.class);
+//                        isMyServiceRunning(MyFcmService.class);
+
+                        Intent intent = new Intent("custom-event-name");
+                        intent.putExtra("message", "stop");
+
+                        //Log.d(TAG,"broad cast");
+
+                        LocalBroadcastManager.getInstance(MainActivity.this).sendBroadcast(intent);
 
                     }
                 }
         );
+
+        ((Button)findViewById(R.id.button_snd_start)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent("custom-event-name");
+                intent.putExtra("message", "start");
+
+                //Log.d(TAG,"broad cast");
+
+                LocalBroadcastManager.getInstance(MainActivity.this).sendBroadcast(intent);
+
+            }
+        });
 
 
     }

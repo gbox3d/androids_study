@@ -39,8 +39,10 @@ public class MyFcmService extends FirebaseMessagingService {
             Log.d(TAG," msg : " + remoteMessage.getData().get("msg"));
             Log.d(TAG," num1 : " + remoteMessage.getData().get("num1"));
 
+            //벳지에 알림 내용 출력
             sendNotification(remoteMessage.getData().get("msg"));
 
+            //Player서비스가 음악연주하도록 브로드 캐스팅
             Intent intent = new Intent("custom-event-name");
             intent.putExtra("message", "start");
             LocalBroadcastManager.getInstance(this).sendBroadcast(intent);

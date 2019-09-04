@@ -4,6 +4,8 @@ google-services.json 파일은 파이어배이스 콘솔에서 따로 생성하�
 
 https://console.firebase.google.com
 
+이 예제의 패키지 이름은 com.gbox3d.exam01push 입니다.   
+
 ## fcm 서비스 특징
 
 알림이 도착하면 실행되고 처리가 끝나면 바로 사라진다. 그래서 메인액티비티에서 이서비스는 따로 처리 할수없다.  

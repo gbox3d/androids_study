@@ -22,6 +22,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Log.d(TAG,"start activity");
 
+        Intent intent = new Intent(MainActivity.this,MyService.class);
+        intent.putExtra("message", "This is my first message!");
+
+        startService(intent);
+
+
         ((Button)findViewById(R.id.button_start)).setOnClickListener(
                 new View.OnClickListener() {
                     @Override

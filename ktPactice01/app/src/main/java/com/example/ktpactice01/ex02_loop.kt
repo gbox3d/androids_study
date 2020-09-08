@@ -15,7 +15,4 @@ fun main()
         println(_i)
     }
 
-
-
-
 }

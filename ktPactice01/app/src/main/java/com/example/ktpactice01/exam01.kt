@@ -19,5 +19,10 @@ fun main() {
 
     println( "$a * $b mul is ${mul(a,b)} " )
 
+    //외부 모듈 실행
+    foo().hello()
+
+    foo_SayHello()
+
 
 }

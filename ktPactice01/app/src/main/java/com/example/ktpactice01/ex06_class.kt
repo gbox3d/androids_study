@@ -1,5 +1,4 @@
 package com.example.ktpactice01
-
 //상속을 허용 하려면 open
 open class Shape {
     lateinit var m_color :String

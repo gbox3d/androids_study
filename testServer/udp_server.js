@@ -41,14 +41,14 @@ server.on("message", function (msg, rinfo) {
 
     console.log(`code : ${_code}, id : ${_id} ,sr_cnt : ${_sr_cnt} ,data size : ${_data_size}`)
 
-    let resBuf = new Buffer(128)
+    let resBuf = new Buffer.alloc(128)
     _offset = 0
     switch (_code) {
         case 0x05: //ping
             {
                 resBuf.writeUInt8(0x02, _offset++) // stx
                 resBuf.writeUInt8(0x01, _offset++) //op code ack
-                resBuf.writeUInt16BE(_sr_cnt + 1, _offset) //sr_cnt
+                resBuf.writeUInt16LE(_sr_cnt + 1, _offset) //sr_cnt
                 _offset += 2
                 resBuf.writeUInt32LE(_id, _offset)
                 _offset += 4
@@ -72,7 +72,7 @@ server.on("message", function (msg, rinfo) {
             {
                 resBuf.writeUInt8(0x02, _offset++) // stx
                 resBuf.writeUInt8(0x01, _offset++) //op code ack
-                resBuf.writeUInt16BE(_sr_cnt + 1, _offset) //sr_cnt
+                resBuf.writeUInt16LE(_sr_cnt + 1, _offset) //sr_cnt
                 _offset += 2
                 resBuf.writeUInt32LE(_id, _offset)
                 _offset += 4

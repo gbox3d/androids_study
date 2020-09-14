@@ -36,8 +36,16 @@ class MainActivity : AppCompatActivity() {
             GlobalScope.launch {
                 for( _i in 1..10)
                 {
+//                    tv_counter2.setText("count : $_i")
+
                     println("in coroutin count ${_i}")
                     delay(500)
+
+                    mHandler.obtainMessage(0x20).apply {
+                        this.arg1 = _i
+                        sendToTarget()
+                    }
+
                 }
 
                 println("done in coroutin")
@@ -55,6 +63,8 @@ class MainActivity : AppCompatActivity() {
                 when(msg.what) {
                     0x10->
                         textView_counter1.setText(" count  : ${msg.arg1}")
+                    0x20->
+                        tv_counter2.text = " count  : ${msg.arg1}"
                 }
             }
         }

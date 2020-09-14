@@ -11,17 +11,22 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         button_test_1.setOnClickListener() {
 
+            println("main thread")
             GlobalScope.launch(Dispatchers.IO) {
+                for( _i in 1..10)
+                {
+                    tv_test_1.setText("count : $_i")
 
-                var _count = 0
-                while (_count < 10) {
+                    println("in coroutin count ${_i}")
                     delay(500)
-                    println("io done")
-                    _count++
-                    tv_test_1.text = "$_count"
+
                 }
 
+                println("done in coroutin")
             }
+
+            println("done mainthread")
+
 
         }
 

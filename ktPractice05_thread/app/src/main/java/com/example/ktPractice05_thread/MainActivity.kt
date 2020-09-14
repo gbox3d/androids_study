@@ -8,9 +8,7 @@ import android.os.Looper
 import android.os.Message
 import android.util.Log
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 //코루틴
 //https://codechacha.com/ko/android-coroutine/
@@ -19,7 +17,7 @@ class MainActivity : AppCompatActivity() {
 
 
     companion object {
-        lateinit var mHandler:Handler
+        lateinit var mHandler: Handler
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,16 +32,17 @@ class MainActivity : AppCompatActivity() {
 
             println("main thread")
             GlobalScope.launch {
-                for( _i in 1..10)
-                {
-//                    tv_counter2.setText("count : $_i")
+                for (_i in 1..10) {
+                    val _async = async(Dispatchers.IO) {
+                        println("in coroutin count ${_i}")
+                        delay(500)
 
-                    println("in coroutin count ${_i}")
-                    delay(500)
+                    }
 
-                    mHandler.obtainMessage(0x20).apply {
-                        this.arg1 = _i
-                        sendToTarget()
+                    _async.await()
+                    launch(Dispatchers.Main) {
+                        tv_counter2.setText("count : $_i")
+
                     }
 
                 }
@@ -60,10 +59,10 @@ class MainActivity : AppCompatActivity() {
                 super.handleMessage(msg)
                 println("what : ${msg.what} , arg1 : ${msg.arg1}")
 
-                when(msg.what) {
-                    0x10->
+                when (msg.what) {
+                    0x10 ->
                         textView_counter1.setText(" count  : ${msg.arg1}")
-                    0x20->
+                    0x20 ->
                         tv_counter2.text = " count  : ${msg.arg1}"
                 }
             }
@@ -71,9 +70,9 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    class Test1:Thread() {
+    class Test1 : Thread() {
         override fun run() {
-            for(_i in 1..10) {
+            for (_i in 1..10) {
                 println("count : ${_i}")
                 sleep(500)
 //                val _msg = mHandler.obtainMessage()

@@ -1,7 +1,11 @@
 package com.example.ktPractice05_thread
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.os.Message
 import android.util.Log
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.GlobalScope
@@ -12,6 +16,12 @@ import kotlinx.coroutines.launch
 //https://codechacha.com/ko/android-coroutine/
 
 class MainActivity : AppCompatActivity() {
+
+
+    companion object {
+        lateinit var mHandler:Handler
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -37,6 +47,18 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+        mHandler = object : Handler(Looper.getMainLooper()) {
+            override fun handleMessage(msg: Message) {
+                super.handleMessage(msg)
+                println("what : ${msg.what} , arg1 : ${msg.arg1}")
+
+                when(msg.what) {
+                    0x10->
+                        textView_counter1.setText(" count  : ${msg.arg1}")
+                }
+            }
+        }
+
     }
 
     class Test1:Thread() {
@@ -44,6 +66,15 @@ class MainActivity : AppCompatActivity() {
             for(_i in 1..10) {
                 println("count : ${_i}")
                 sleep(500)
+//                val _msg = mHandler.obtainMessage()
+//                _msg.what = 0x10 //count data
+//                _msg.arg1 = _i
+//                mHandler.sendMessage(_msg)
+
+                mHandler.obtainMessage(0x10).apply {
+                    this.arg1 = _i
+                    sendToTarget()
+                }
             }
             println("stop test1")
         }

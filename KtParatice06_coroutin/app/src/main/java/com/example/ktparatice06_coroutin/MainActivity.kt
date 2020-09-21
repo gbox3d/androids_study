@@ -31,10 +31,55 @@ class MainActivity : AppCompatActivity() {
                     tv_test_1.text = "end coroutine $count"
                 }
 
-                println("end coroutin")
+                println("end coroutin ?")
             }
 
             println("start coroutin")
         }
+
+        btn_launch_test.setOnClickListener {
+
+            tv_out.text = ""
+
+            GlobalScope.launch(Dispatchers.IO) {
+
+                delay(500)
+                launch(Dispatchers.Main) {
+                    tv_out.text = tv_out.text.toString().plus("step 0\n")
+                }
+
+                launch(Dispatchers.Main) {
+                    delay(300)
+                    tv_out.text = tv_out.text.toString().plus("step 1\n")
+                }
+                launch(Dispatchers.Main) {
+                    delay(250)
+                    tv_out.text = tv_out.text.toString().plus("step 2\n")
+                }
+            }
+
+            tv_out.text = tv_out.text.toString().plus("step 3\n")
+        }
+
+        button_withContext.setOnClickListener {
+            GlobalScope.launch(Dispatchers.IO) {
+
+                //블럭안의 내용이 끝날때까지 기다렸다가 진행 
+                withContext(Dispatchers.Main) {
+                    delay(3000)
+                    println("step 1")
+                    tv_out.text = tv_out.text.toString().plus("\nstep 1")
+                }
+
+                withContext(Dispatchers.Default) {
+                    delay(1000)
+                    println("step 2")
+                }
+
+            }
+            tv_out.text = "with context test start"
+        }
     }
+
+
 }

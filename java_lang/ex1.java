@@ -1,8 +1,8 @@
 public class ex1 {
 
     
-    public static void main(String[] args) {
-        
+    public static void main(String[] args) //엔트리 포인트    
+    { 
         //변수 선언 
         int x;
         double y;

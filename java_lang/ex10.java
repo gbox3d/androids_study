@@ -6,6 +6,9 @@ public class ex10 {
 
         System.out.println("증가 연산자 ");
         count++;
+        //count = count + 1;
+        //count += 1;
+
         System.out.println(count);
 
         System.out.println(count++); //넘기고 증가

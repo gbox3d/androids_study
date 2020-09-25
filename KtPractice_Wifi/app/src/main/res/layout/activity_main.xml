@@ -10,12 +10,21 @@
         android:id="@+id/btn_hotspot_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="hotspot on"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.216"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.197" />
+
+    <Button
+        android:id="@+id/btn_hotspo_off"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:text="hotspot off"
+        app:layout_constraintStart_toEndOf="@+id/btn_hotspot_status"
+        app:layout_constraintTop_toTopOf="@+id/btn_hotspot_status" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

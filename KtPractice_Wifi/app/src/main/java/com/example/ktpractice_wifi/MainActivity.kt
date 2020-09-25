@@ -13,9 +13,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         btn_hotspot_status.setOnClickListener {
+            myWifi.turnOnHotspot(this)
 
-
-
+        }
+        btn_hotspo_off.setOnClickListener {
+            myWifi.turnOffHotspot()
         }
     }
 }

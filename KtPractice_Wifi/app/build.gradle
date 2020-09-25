@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.ktpractice_wifi"
-        minSdkVersion 16
+        minSdkVersion 28
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -23,8 +23,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility kotlin_version
-        targetCompatibility kotlin_version
+        sourceCompatibility "1.5"
+        targetCompatibility "1.5"
     }
 }
 

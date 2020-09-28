@@ -47,7 +47,7 @@ server.on("message", function (msg, rinfo) {
         case 0x05: //ping
             {
                 resBuf.writeUInt8(0x02, _offset++) // stx
-                resBuf.writeUInt8(0x01, _offset++) //op code ack
+                resBuf.writeUInt8(0x01, _offset++) //op code ack ,0x01
                 resBuf.writeUInt16LE(_sr_cnt + 1, _offset) //sr_cnt
                 _offset += 2
                 resBuf.writeUInt32LE(_id, _offset)
@@ -71,23 +71,13 @@ server.on("message", function (msg, rinfo) {
         default:
             {
                 resBuf.writeUInt8(0x02, _offset++) // stx
-                resBuf.writeUInt8(0x01, _offset++) //op code ack
+                resBuf.writeUInt8(0x10, _offset++) //op code : no command 0x10
                 resBuf.writeUInt16LE(_sr_cnt + 1, _offset) //sr_cnt
                 _offset += 2
                 resBuf.writeUInt32LE(_id, _offset)
                 _offset += 4
-                resBuf.writeUInt32LE(12, _offset) //data size
+                resBuf.writeUInt32LE(0, _offset) //data size
                 _offset += 4
-
-                //body
-                let _date = new Date()
-                resBuf.writeUInt32LE(getBisDateNumber(_date), _offset)
-                _offset += 4
-                resBuf.writeUInt32LE(getBisTimeNumber(_date), _offset)
-                _offset += 4
-                resBuf.writeUInt8(_code, _offset++)
-                resBuf.writeUInt8(0xff, _offset++) //error 원인,  0xff 는 존재 하지않는 code
-                _offset += 2 //예약 영역
 
                 resBuf.writeUInt8(0, _offset++) //check sum
                 resBuf.writeUInt8(0x03, _offset++) //etx

@@ -55,7 +55,7 @@ server.on("message", function (msg, rinfo) {
             {
                 //응답 만들어 보내기 
                 resBuf.writeUInt8(0x02, _offset++) // stx
-                resBuf.writeUInt8(0x01, _offset++) //op code ack
+                resBuf.writeUInt8(0x01, _offset++) //op code ack ,0x01
                 resBuf.writeUInt16LE(_sr_cnt + 1, _offset) //sr_cnt
                 _offset += 2
                 resBuf.writeUInt32LE(_id, _offset)
@@ -79,14 +79,13 @@ server.on("message", function (msg, rinfo) {
         default:
             {
                 resBuf.writeUInt8(0x02, _offset++) // stx
-                resBuf.writeUInt8(0x10, _offset++) //op code ack
+                resBuf.writeUInt8(0x10, _offset++) //op code : no command 0x10
                 resBuf.writeUInt16LE(_sr_cnt + 1, _offset) //sr_cnt
                 _offset += 2
                 resBuf.writeUInt32LE(_id, _offset)
                 _offset += 4
                 resBuf.writeUInt32LE(0, _offset) //data size
                 _offset += 4
-                
                 resBuf.writeUInt8(0, _offset++) //check sum
                 resBuf.writeUInt8(0x03, _offset++) //etx
 

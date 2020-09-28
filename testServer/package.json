@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "udp" : "node udp_server.js 10060",
-    "tcp" : "node tcp_server.js 10061"
+    "tcp" : "node tcp_server.js 10061",
+    "rest" : "node rest_server.js 10062"
   },
   "author": "",
   "license": "ISC"

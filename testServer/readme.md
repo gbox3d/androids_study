@@ -21,3 +21,12 @@
 ### code
 
 0x05(ping) ->  0x01(ack)  
+
+### 사용법
+
+```
+pm2 start npm --name "udp_babeq_server" -- run udp
+pm2 start npm --name "tcp_babeq_server" -- run tcp
+```
+
+

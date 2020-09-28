@@ -13,7 +13,7 @@ public class ex19 {
             Socket _socket = new Socket(SERVERIP, SERVERPORT);
             InputStream _in = _socket.getInputStream();
 
-            OutputStream _out = _socket.getOutputStream();
+            OutputStream _out = _socket.getOutputStream(); //스트림 얻기 
 
             byte buffer[] = { 0x02, 0x05, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
             _out.write(buffer);

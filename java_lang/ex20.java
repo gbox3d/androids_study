@@ -10,7 +10,7 @@ public class ex20 {
 
         try {
             InetAddress ia = InetAddress.getByName(SERVERIP);
-            DatagramSocket ds = new DatagramSocket(SERVERPORT);
+            DatagramSocket ds = new DatagramSocket(SERVERPORT); //소켓 만들기
             byte buffer[] = { 0x02, 0x05, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
             DatagramPacket dp = new DatagramPacket(buffer, buffer.length, ia, SERVERPORT);

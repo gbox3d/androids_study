@@ -22,6 +22,8 @@ public class ex16_1 {
         Double _c = _sc.nextDouble();
         System.out.println("result : " + _c );
 
-        _sc.close();
+
+
+        
     }
 }

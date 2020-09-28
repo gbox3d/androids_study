@@ -1,5 +1,5 @@
 const dgram = require("dgram");
-const port = 50020;
+var port = 50020;
 
 const server = dgram.createSocket("udp4");
 const networkInterfaces = require('os').networkInterfaces
@@ -23,6 +23,7 @@ function getLocalIp() {
     return localIp;
 }
 
+var deviceList = {}
 
 server.on("message", function (msg, rinfo) {
 
@@ -41,11 +42,18 @@ server.on("message", function (msg, rinfo) {
 
     console.log(`code : ${_code}, id : ${_id} ,sr_cnt : ${_sr_cnt} ,data size : ${_data_size}`)
 
+    deviceList[_id] = {
+        rinfo : rinfo,
+        at : (new Date()).getTime()
+    }
+    
+
     let resBuf = new Buffer.alloc(128)
     _offset = 0
     switch (_code) {
         case 0x05: //ping
             {
+                //응답 만들어 보내기 
                 resBuf.writeUInt8(0x02, _offset++) // stx
                 resBuf.writeUInt8(0x01, _offset++) //op code ack ,0x01
                 resBuf.writeUInt16LE(_sr_cnt + 1, _offset) //sr_cnt
@@ -78,7 +86,6 @@ server.on("message", function (msg, rinfo) {
                 _offset += 4
                 resBuf.writeUInt32LE(0, _offset) //data size
                 _offset += 4
-
                 resBuf.writeUInt8(0, _offset++) //check sum
                 resBuf.writeUInt8(0x03, _offset++) //etx
 
@@ -92,6 +99,20 @@ server.on("message", function (msg, rinfo) {
         rinfo.port, rinfo.address); // added missing bracket
 });
 
-server.bind(port);
+function startup()
+{
+    let port = 50020
+    if (process.argv.length > 2) {
+        port = parseInt(process.argv[2])
+    }
+    else {
+        console.log('default port bind')
+    }
 
-console.log(`udp server bind at ${getLocalIp()} : ${port}`)
+    server.bind(port);
+    
+    console.log(`udp server bind at ${getLocalIp()} : ${port}`)
+    
+};
+
+startup()

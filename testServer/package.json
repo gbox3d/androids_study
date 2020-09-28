@@ -1,0 +1,13 @@
+{
+  "name": "testsrv",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "udp" : "node udp_server.js 10060",
+    "tcp" : "node tcp_server.js 10061"
+  },
+  "author": "",
+  "license": "ISC"
+}

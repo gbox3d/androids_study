@@ -15,6 +15,13 @@
 
   <h1>어여와 html5는 첨이지?</h1>
   <button id="dummy_test">dummy test</button>
+  
+
+  <div>
+    <p id="result-rest-test"></p>
+    <button id="test_rest">rest test</button>
+
+  </div>
 
   <script>
 
@@ -24,8 +31,13 @@
         console.log(`result : ${msg}`)
       }
       window.webview.getNum(3)
+    })
 
-
+    document.querySelector("#test_rest").addEventListener('click',async (evt)=> {
+      let _res = await (await fetch(`http://ubiqos001.iptime.org:10062/new`) ).json()
+      document.querySelector("#result-rest-test").innerText = _res.time
+      console.log(_res)
+      
     })
 
 

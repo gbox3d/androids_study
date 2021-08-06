@@ -1,5 +1,7 @@
 # TF Lite Object Detection Android Studio 예제
 
+* [전체 개요 참고](app/readme.md)
+
 ## installation
 ```
 git clone http://github.com/gbox3d/androids_study
@@ -20,7 +22,4 @@ git clone http://github.com/gbox3d/androids_study
 * 기본 예제용 모델파일은 빌드시 gradle script를 통하여 다운로드 된다.
 
 ## 모델 호환성
-[모델 호환성 요구사항](https://www.tensorflow.org/lite/inference_with_metadata/task_library/object_detector)
-
-
-[전체 개요 참고](./app/readme.md)
+* [모델 호환성 요구사항](https://www.tensorflow.org/lite/inference_with_metadata/task_library/object_detector)

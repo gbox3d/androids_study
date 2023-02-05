@@ -14,6 +14,8 @@ class MainActivity : AppCompatActivity() {
 
         println("hello")
 
+        textView.setText("hi~")
+
         button_test.setOnClickListener {
 
             val btn = it as Button

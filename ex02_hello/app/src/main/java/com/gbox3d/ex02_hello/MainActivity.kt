@@ -13,6 +13,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_main)
 
+        // 뷰바인딩 참고자료 : https://duckssi.tistory.com/42
+
         mBinder = ActivityMainBinding.inflate(layoutInflater)
         val view = mBinder.root
 

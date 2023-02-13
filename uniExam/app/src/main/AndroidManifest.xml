@@ -12,6 +12,9 @@
         android:theme="@style/Theme.UniExam"
         tools:targetApi="31">
         <activity
+            android:name=".ExampleSubActivity"
+            android:exported="false" />
+        <activity
             android:name=".EampleCoroutinActivity"
             android:exported="false" />
         <activity

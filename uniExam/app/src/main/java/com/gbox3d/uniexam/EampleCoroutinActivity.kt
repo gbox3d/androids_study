@@ -11,6 +11,7 @@ import kotlinx.coroutines.*
 
 class EampleCoroutinActivity : AppCompatActivity() {
 
+    //참고 자료 : https://whyprogrammer.tistory.com/596
     private suspend fun yesnoDlg() : Deferred<String> =
         CoroutineScope(Dispatchers.Main).async {
             println("dlg start")
@@ -119,6 +120,7 @@ class EampleCoroutinActivity : AppCompatActivity() {
 
             CoroutineScope(Dispatchers.IO).async {
 
+                //suspend function
                 var _r = yesnoDlg().await()
                 println(_r)
                 async(Dispatchers.Main) {
@@ -127,7 +129,6 @@ class EampleCoroutinActivity : AppCompatActivity() {
             }
 
         }
-
 
     }
 }
